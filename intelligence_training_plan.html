@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intelligence Training Plan — 90 Days</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0e0e0f;
+    --surface: #16161a;
+    --surface2: #1e1e24;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #f0ede8;
+    --text-muted: #888884;
+    --text-faint: #555552;
+    --accent: #c8a96e;
+    --accent2: #7f77dd;
+    --green: #1d9e75;
+    --coral: #d85a30;
+    --pink: #d4537e;
+    --blue: #378add;
+    --amber: #ba7517;
+  }
+
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  .header {
+    padding: 3rem 2.5rem 2rem;
+    border-bottom: 0.5px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(127,119,221,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .header-eyebrow {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .header h1 {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: normal;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .header-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-family: 'Courier New', monospace;
+  }
+
+  .tabs-bar {
+    display: flex;
+    gap: 0;
+    border-bottom: 0.5px solid var(--border);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs-bar::-webkit-scrollbar { display: none; }
+
+  .tab {
+    padding: 14px 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .content {
+    padding: 2rem 2.5rem;
+    max-width: 860px;
+  }
+
+  .phase-intro {
+    background: var(--surface2);
+    border-left: 2px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.75rem;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-family: 'Courier New', monospace;
+  }
+
+  .phase-intro strong { color: var(--accent); font-weight: normal; }
+
+  .section-label {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 1rem;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 10px;
+    transition: border-color 0.2s;
+  }
+
+  .card:hover { border-color: var(--border2); }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 8px;
+  }
+
+  .intel-name {
+    font-size: 15px;
+    font-weight: normal;
+    color: var(--text);
+    letter-spacing: 0.01em;
+  }
+
+  .intel-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: 'Courier New', monospace;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  .practice {
+    font-size: 13.5px;
+    color: #c8c5be;
+    line-height: 1.75;
+  }
+
+  .time-badge {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    background: var(--surface2);
+    color: var(--text-faint);
+    border: 0.5px solid var(--border);
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .day-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    margin-bottom: 1.75rem;
+  }
+
+  .day-cell {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 6px;
+    text-align: center;
+  }
+
+  .dname {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    font-weight: bold;
+    color: var(--text);
+    margin-bottom: 6px;
+    letter-spacing: 0.04em;
+  }
+
+  .focus-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    margin: 3px auto;
+  }
+
+  .day-label {
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    color: var(--text-faint);
+    margin-top: 5px;
+    line-height: 1.3;
+  }
+
+  .dot-eq { background: #1d9e75; }
+  .dot-ef { background: #7f77dd; }
+  .dot-fi { background: #378add; }
+  .dot-mc { background: #d85a30; }
+  .dot-li { background: #639922; }
+  .dot-pi { background: #ba7517; }
+  .dot-si { background: #d4537e; }
+  .dot-ai { background: #888780; }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 1.75rem;
+  }
+
+  .leg-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+
+  .leg-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .non-neg {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .non-neg ul { list-style: none; }
+  .non-neg li {
+    font-size: 13.5px;
+    color: #c8c5be;
+    line-height: 1.7;
+    padding: 6px 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .non-neg li:last-child { border-bottom: none; }
+  .non-neg li::before { content: "→ "; color: var(--text-faint); font-family: 'Courier New', monospace; }
+
+  .principle-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .principle-card ul { list-style: none; }
+  .principle-card li {
+    font-size: 13.5px;
+    color: #c8c5be;
+    line-height: 1.75;
+    padding: 6px 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .principle-card li:last-child { border-bottom: none; }
+  .principle-card li::before { content: "→ "; color: var(--text-faint); font-family: 'Courier New', monospace; }
+
+  .card-title {
+    font-size: 12px;
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  @media (max-width: 600px) {
+    .header, .content { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .day-grid { grid-template-columns: repeat(4, 1fr); }
+    .card-header { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-eyebrow">90-Day Training Protocol</div>
+  <h1>Intelligence Mastery Plan</h1>
+  <div class="header-sub">EQ · Executive Function · Fluid · Analytical · Metacognition · Learning · Practical · Social</div>
+</div>
+
+<div class="tabs-bar">
+  <button class="tab active" onclick="show(0)">Phase 1 — Foundation</button>
+  <button class="tab" onclick="show(1)">Phase 2 — Integration</button>
+  <button class="tab" onclick="show(2)">Phase 3 — Application</button>
+  <button class="tab" onclick="show(3)">Weekly Schedule</button>
+  <button class="tab" onclick="show(4)">Principles</button>
+</div>
+
+<div class="content">
+
+  <!-- Phase 1 -->
+  <div class="panel active" id="p0">
+    <div class="phase-intro"><strong>Days 1–30 — Foundation.</strong> Build non-negotiable daily habits around the root intelligences — metacognition and fluid thinking. Everything else runs lighter in this phase. You're installing the operating system before running apps.</div>
+
+    <div class="section-label">Daily practices — ~90 min total</div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="intel-name">Metacognition</div>
+          <div class="intel-sub">Thinking about your thinking — the master lever</div>
+        </div>
+        <div class="time-badge">20 min/day</div>
+      </div>
+      <div class="practice">Every morning, write 3 lines: what confused you yesterday, what you now understand, what assumption you're holding. Every night, rate your own reasoning (1–5) and identify one bias you caught or missed. Use a notebook — not your phone.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="intel-name">Fluid Intelligence</div>
+          <div class="intel-sub">Raw reasoning — pattern recognition across novel problems</div>
+        </div>
+        <div class="time-badge">15 min/day</div>
+      </div>
+      <div class="practice">Daily: 15 min of abstract reasoning puzzles (matrix puzzles, logical sequences, lateral thinking). Don't rush — struggle is the mechanism. One hard problem done slowly beats ten easy ones done fast.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="intel-name">Executive Function</div>
+          <div class="intel-sub">Planning, impulse control, working memory, follow-through</div>
+        </div>
+        <div class="time-badge">10 min planning</div>
+      </div>
+      <div class="practice">Time-block your day each morning — 3 priorities maximum. Every task gets a time estimate before you start it. Track the gap between estimate and actual. Do one Pomodoro (25/5) on your hardest task before checking anything social. No phone in the first hour of waking.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="intel-name">Learning Intelligence</div>
+          <div class="intel-sub">How efficiently you acquire and retain new skills</div>
+        </div>
+        <div class="time-badge">15 min recall per session</div>
+      </div>
+      <div class="practice">After each study session, close everything and write the core idea from memory. Then compare. The gap is your retention map. Use the Feynman technique: explain it as if teaching a 12-year-old. Where you stumble is your blindspot.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="intel-name">Emotional Intelligence</div>
+          <div class="intel-sub">Reading and regulating internal state; reading others</div>
+        </div>
+        <div class="time-badge">15 min/day</div>
+      </div>
+      <div class="practice">Phase 1 is self-focused: name your emotion at 3 fixed points in the day (after waking, midday, evening). Not "bad" or "good" — specific: anxious, curious, resentful, energized. Trace the cause. Read 10 pages of a high-EQ book daily (start: Goleman's Emotional Intelligence or Brené Brown's Atlas of the Heart).</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="intel-name">Analytical Intelligence</div>
+          <div class="intel-sub">Structured reasoning — breaking problems into causal chains</div>
+        </div>
+        <div class="time-badge">10 min/day</div>
+      </div>
+      <div class="practice">Pick one real-world situation per day (news, your project, a decision). Write a short root-cause analysis: what happened → why → what assumptions led there → what would need to be different. Half a page. Trains the habit of going one level deeper than observation.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="intel-name">Practical Intelligence</div>
+          <div class="intel-sub">Street smarts — reading situations and adapting in real-time</div>
+        </div>
+        <div class="time-badge">5 min journaling + 1 live practice</div>
+      </div>
+      <div class="practice">Phase 1: deliberate observation practice. In any real-world interaction, identify: what's actually happening vs. what's being said? What do people want vs. what they're asking for? Write one observation per day. Begin approaching one unfamiliar person per week for a low-stakes conversation.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="intel-name">Social & Strategic Intelligence</div>
+          <div class="intel-sub">Reading networks, building influence, playing long games</div>
+        </div>
+        <div class="time-badge">10 min weekly + 1 touchpoint/week</div>
+      </div>
+      <div class="practice">Phase 1: map your current network honestly. List 10 people by relationship type. Identify: who do you learn from? Who do you give value to? Who is underutilized? Make one intentional outreach per week — not asking for anything, just adding value or showing genuine interest.</div>
+    </div>
+  </div>
+
+  <!-- Phase 2 -->
+  <div class="panel" id="p1">
+    <div class="phase-intro"><strong>Days 31–60 — Integration.</strong> The intelligences start reinforcing each other. You're no longer doing isolated exercises — you're combining them. Oru enters the picture as a live laboratory.</div>
+
+    <div class="section-label">How practices evolve</div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="intel-name">Metacognition + Analytical</div>
+          <div class="intel-sub">Combined — reasoning audit</div>
+        </div>
+        <div class="time-badge">30 min weekly autopsy</div>
+      </div>
+      <div class="practice">Weekly: Take one decision you made and reconstruct the reasoning chain. Where did emotion override logic? Where did you reason well? Write a "decision autopsy." Apply this to Oru decisions: why did I prioritize this feature, this market, this pitch?</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="intel-name">EQ + Social Intelligence</div>
+          <div class="intel-sub">Move from self-awareness to others-awareness</div>
+        </div>
+        <div class="time-badge">2+ interactions/week with debrief</div>
+      </div>
+      <div class="practice">Cold conversations become your training ground. Your father's network is gold here — start accompanying him, observing how deals are discussed, what people care about, how trust is established. After each interaction: write what you noticed about the other person's emotional state and what went well or poorly.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="intel-name">Executive Function — harder mode</div>
+          <div class="intel-sub">Increase resistance</div>
+        </div>
+        <div class="time-badge">30 min Sunday + 1 hard thing/week</div>
+      </div>
+      <div class="practice">Add a weekly review every Sunday (30 min). Review what you planned vs. what you did — pure audit, no self-blame. Also: introduce one deliberate discomfort per week — a cold approach, a hard conversation, the thing you've been avoiding.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="intel-name">Practical + Strategic Intelligence</div>
+          <div class="intel-sub">Apply to Oru and the local business service</div>
+        </div>
+        <div class="time-badge">One field session/week + writeup</div>
+      </div>
+      <div class="practice">Do one real market-facing action per week: talk to a building materials vendor, visit a store, interview a potential Oru buyer. Goal isn't to pitch — it's to understand the terrain. Strategic intelligence grows from ground truth, not abstraction.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="intel-name">Fluid + Learning Intelligence</div>
+          <div class="intel-sub">Transfer learning — applying patterns across domains</div>
+        </div>
+        <div class="time-badge">10 min cross-domain reflection/week</div>
+      </div>
+      <div class="practice">After learning something new, ask: where else does this pattern appear? A linked list is like a supply chain. A React component is like a modular business unit. Forcing cross-domain connections builds fluid intelligence faster than any puzzle app. Journal one connection per week.</div>
+    </div>
+  </div>
+
+  <!-- Phase 3 -->
+  <div class="panel" id="p2">
+    <div class="phase-intro"><strong>Days 61–90 — Application.</strong> Your intelligence training is no longer separate from your work — it IS your work. Oru is the lab. Every business decision is an intelligence workout.</div>
+
+    <div class="section-label">Phase 3 operating principles</div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="intel-name">Make Oru the integrating challenge</div>
+          <div class="intel-sub">Real stakes accelerate growth</div>
+        </div>
+        <div class="time-badge">One monthly challenge</div>
+      </div>
+      <div class="practice">Set a monthly Oru milestone that requires crossing multiple intelligence types: e.g., "Get 3 verified vendors onboarded." This requires analytical thinking (what problem are we solving?), practical intelligence (how do I approach them?), EQ (how do I handle resistance?), and executive function (follow-through).</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="intel-name">Seek out cognitive friction — deliberately</div>
+          <div class="intel-sub">Fluid and metacognitive growth</div>
+        </div>
+        <div class="time-badge">20 min/day reading + monthly synthesis</div>
+      </div>
+      <div class="practice">Read one genuinely hard book per month — philosophy, systems thinking, complexity theory, behavioral economics. Don't aim to finish fast. Aim to have your model of something updated. Suggestions: Thinking Fast and Slow, The Fifth Discipline, Poor Charlie's Almanack.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="intel-name">Build a feedback network</div>
+          <div class="intel-sub">Social + EQ + metacognition combined</div>
+        </div>
+        <div class="time-badge">Monthly session with 1–2 people</div>
+      </div>
+      <div class="practice">Identify 2–3 people whose judgment you respect and who will be honest. Create a lightweight feedback loop: share something you're working on, ask one specific question — "where is the gap in this reasoning?" Feedback from reality is the fastest intelligence accelerant.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="intel-name">Teach what you know</div>
+          <div class="intel-sub">Learning intelligence at its ceiling</div>
+        </div>
+        <div class="time-badge">One piece of teaching content/week</div>
+      </div>
+      <div class="practice">The ultimate test of understanding is whether you can teach it. Start writing: once a week, explain something you've learned — a tweet thread, a blog post, a message to a younger developer. Teaching forces clarity, reveals gaps, and builds your public presence in parallel.</div>
+    </div>
+  </div>
+
+  <!-- Weekly Schedule -->
+  <div class="panel" id="p3">
+    <div class="phase-intro"><strong>Weekly rhythm.</strong> A suggested structure — adapt it. The intelligences that need the most work get the most attention. The goal is rhythm, not rigidity.</div>
+
+    <div class="section-label">Weekly structure</div>
+
+    <div class="day-grid">
+      <div class="day-cell">
+        <div class="dname">Mon</div>
+        <div class="focus-dot dot-ef"></div>
+        <div class="focus-dot dot-mc"></div>
+        <div class="day-label">Plan + reflect</div>
+      </div>
+      <div class="day-cell">
+        <div class="dname">Tue</div>
+        <div class="focus-dot dot-fi"></div>
+        <div class="focus-dot dot-ai"></div>
+        <div class="day-label">Reasoning</div>
+      </div>
+      <div class="day-cell">
+        <div class="dname">Wed</div>
+        <div class="focus-dot dot-eq"></div>
+        <div class="focus-dot dot-si"></div>
+        <div class="day-label">People</div>
+      </div>
+      <div class="day-cell">
+        <div class="dname">Thu</div>
+        <div class="focus-dot dot-li"></div>
+        <div class="focus-dot dot-fi"></div>
+        <div class="day-label">Deep learn</div>
+      </div>
+      <div class="day-cell">
+        <div class="dname">Fri</div>
+        <div class="focus-dot dot-pi"></div>
+        <div class="focus-dot dot-si"></div>
+        <div class="day-label">Field + apply</div>
+      </div>
+      <div class="day-cell">
+        <div class="dname">Sat</div>
+        <div class="focus-dot dot-li"></div>
+        <div class="focus-dot dot-ai"></div>
+        <div class="day-label">Build + create</div>
+      </div>
+      <div class="day-cell">
+        <div class="dname">Sun</div>
+        <div class="focus-dot dot-mc"></div>
+        <div class="focus-dot dot-ef"></div>
+        <div class="day-label">Weekly review</div>
+      </div>
+    </div>
+
+    <div class="legend">
+      <div class="leg-item"><div class="leg-dot dot-mc"></div> Metacognition</div>
+      <div class="leg-item"><div class="leg-dot dot-ef"></div> Executive function</div>
+      <div class="leg-item"><div class="leg-dot dot-fi"></div> Fluid intelligence</div>
+      <div class="leg-item"><div class="leg-dot dot-ai"></div> Analytical</div>
+      <div class="leg-item"><div class="leg-dot dot-eq"></div> Emotional intelligence</div>
+      <div class="leg-item"><div class="leg-dot dot-si"></div> Social & strategic</div>
+      <div class="leg-item"><div class="leg-dot dot-li"></div> Learning intelligence</div>
+      <div class="leg-item"><div class="leg-dot dot-pi"></div> Practical intelligence</div>
+    </div>
+
+    <div class="section-label">Daily non-negotiables — every day</div>
+    <div class="non-neg">
+      <ul>
+        <li>Morning: 10 min planning + emotion check-in</li>
+        <li>Study/work session: recall test at the end (close and reconstruct)</li>
+        <li>At least 1 Pomodoro on hardest task before checking social or messages</li>
+        <li>Evening: 10 min metacognition journal (3 questions)</li>
+        <li>No phone for the first 45 min after waking</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Principles -->
+  <div class="panel" id="p4">
+    <div class="section-label">Overarching truths about this kind of training</div>
+    <div class="principle-card">
+      <ul>
+        <li>Consistency over intensity — 45 focused minutes daily beats 5 hours once a week</li>
+        <li>Discomfort is signal, not noise — if it feels hard, you're in the right place</li>
+        <li>Real stakes accelerate growth faster than exercises — Oru is your best training ground</li>
+        <li>Metacognition is the meta-intelligence — train it above all else; it improves everything else</li>
+        <li>Your father's network is a live classroom for practical and social intelligence — use it deliberately</li>
+        <li>The goal is not to eliminate your natural personality — it's to expand your range</li>
+        <li>Track what you actually do, not what you plan to do — the gap is where the self-knowledge lives</li>
+        <li>You're training to build a global company — the training must be ruthlessly applied, not just intellectually admired</li>
+      </ul>
+    </div>
+
+    <div class="section-label" style="margin-top: 1.5rem;">What mastery actually looks like</div>
+    <div class="principle-card">
+      <ul>
+        <li>You catch your own biases in real-time, not just in retrospect</li>
+        <li>You can read a room and adapt your approach without losing your position</li>
+        <li>You follow through on hard things even when motivation is low</li>
+        <li>You learn faster than people around you — and you know why</li>
+        <li>Difficult conversations no longer require you to overcome yourself first</li>
+        <li>You see problems as systems with leverage points, not walls</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function show(n) {
+    for (let i = 0; i < 5; i++) {
+      document.getElementById('p' + i).classList.toggle('active', i === n);
+    }
+    document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', i === n));
+  }
+</script>
+</body>
+</html>

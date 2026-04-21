@@ -1,0 +1,148 @@
+:root {
+  color-scheme: dark;
+  --bg: #0b1020;
+  --card: #131a2e;
+  --text: #eef3ff;
+  --muted: #a5b1cf;
+  --accent: #7ea3ff;
+  --accent-2: #5fe1b6;
+  --danger: #ff7b89;
+  --border: #293252;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: radial-gradient(circle at top, #151f40 0%, var(--bg) 50%);
+  color: var(--text);
+}
+
+.container {
+  width: min(900px, 95vw);
+  margin: 2rem auto;
+  display: grid;
+  gap: 1rem;
+}
+
+.hero {
+  padding: 1.25rem;
+}
+
+.hero h1 {
+  margin: 0;
+}
+
+.card {
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--card), #fff 2%);
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.card-header h2 {
+  margin-bottom: 0.3rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.task-form,
+.journal-actions,
+.preset-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.task-form input {
+  flex: 1;
+}
+
+input,
+textarea,
+button {
+  background: #0c1225;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.7rem;
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: var(--accent);
+}
+
+button.danger:hover {
+  border-color: var(--danger);
+}
+
+.task-list,
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.55rem;
+}
+
+.task-left {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex: 1;
+}
+
+.task-item.done .task-label {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.icon-btn {
+  padding: 0.25rem 0.5rem;
+}
+
+.history-item {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.7rem;
+}
+
+.history-item h3 {
+  margin: 0 0 0.4rem;
+  font-size: 0.95rem;
+}
+
+.history-item p {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

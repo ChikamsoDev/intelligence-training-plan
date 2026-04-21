@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Self-Improvement Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="hero">
+        <h1>Daily Intelligence Training Dashboard</h1>
+        <p>
+          Keep it simple: one hard thinking block, one focused build block, one reflection.
+        </p>
+      </header>
+
+      <section class="card" aria-labelledby="today-heading">
+        <div class="card-header">
+          <h2 id="today-heading">Today's Plan</h2>
+          <p id="today-date" class="muted"></p>
+        </div>
+
+        <form id="add-task-form" class="task-form">
+          <label for="new-task" class="sr-only">Add task</label>
+          <input id="new-task" name="newTask" type="text" maxlength="120" placeholder="Add a task for today..." required />
+          <button type="submit">Add</button>
+        </form>
+
+        <ul id="task-list" class="task-list" aria-live="polite"></ul>
+
+        <div class="preset-actions">
+          <button id="load-core-routine" type="button">Load core 60-min routine</button>
+          <button id="clear-tasks" type="button" class="danger">Clear today's tasks</button>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="journal-heading">
+        <div class="card-header">
+          <h2 id="journal-heading">Daily Reflection Journal</h2>
+          <p class="muted">Write a short end-of-day review.</p>
+        </div>
+
+        <form id="journal-form" class="journal-form">
+          <label for="journal-entry">Journal entry</label>
+          <textarea
+            id="journal-entry"
+            name="journalEntry"
+            rows="10"
+            placeholder="What did I try? Where did I struggle? Why? What changes tomorrow?"
+          ></textarea>
+          <div class="journal-actions">
+            <button type="submit">Save entry</button>
+            <span id="save-status" class="muted" aria-live="polite"></span>
+          </div>
+        </form>
+      </section>
+
+      <section class="card" aria-labelledby="history-heading">
+        <div class="card-header">
+          <h2 id="history-heading">Recent Journal Entries</h2>
+          <p class="muted">Last 7 days</p>
+        </div>
+        <ul id="journal-history" class="history-list"></ul>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
